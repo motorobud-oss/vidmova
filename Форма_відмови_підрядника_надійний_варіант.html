@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Відмова від участі</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f2f3f5;margin:0;padding:24px}
+.card{max-width:680px;margin:auto;background:white;border:1px solid #ddd;border-radius:10px;padding:28px}
+h1{font-size:23px;margin:0 0 22px}
+.info{background:#f7f7f7;border-radius:7px;padding:14px 16px;line-height:1.7}
+label{display:block;font-weight:700;margin-top:20px;margin-bottom:8px}
+input,select,textarea{width:100%;box-sizing:border-box;padding:11px;border:1px solid #b8bcc2;border-radius:6px;font-size:15px}
+textarea{min-height:80px}
+button{margin-top:20px;padding:12px 18px;border:0;border-radius:6px;background:#b42318;color:white;font-weight:700;cursor:pointer}
+.result{display:none;margin-top:24px;border:1px solid #ddd;border-radius:7px;padding:16px;background:#fafafa;white-space:pre-wrap;line-height:1.55}
+.copy{display:none;background:#444}
+.status{margin-top:12px;color:#176b2c;font-weight:700}
+small{display:block;margin-top:20px;color:#666;line-height:1.4}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Відмова від участі у запиті комерційної пропозиції</h1>
+
+<div class="info">
+<div><b>№ запиту:</b> TEST-001</div>
+<div><b>Об'єкт:</b> [назва об'єкта]</div>
+</div>
+
+<label for="contractor">Назва підприємства</label>
+<input id="contractor" placeholder="Наприклад: ТОВ «...»">
+
+<label for="reason">Оберіть причину відмови</label>
+<select id="reason">
+<option value="">Оберіть причину</option>
+<option>Не зацікавлені у виконанні робіт.</option>
+<option>Не влаштовує строк виконання робіт.</option>
+<option>Не влаштовують умови оплати.</option>
+<option>Відсутні необхідні ресурси для виконання робіт.</option>
+</select>
+
+<label for="comment">Додаткова інформація (за потреби)</label>
+<textarea id="comment" placeholder="Необов'язково"></textarea>
+
+<button id="make">СФОРМУВАТИ ОФІЦІЙНУ ВІДПОВІДЬ</button>
+
+<div id="result" class="result"></div>
+<button id="copy" class="copy">СКОПІЮВАТИ ТЕКСТ</button>
+<div id="status" class="status"></div>
+
+<small>
+Після копіювання відкрийте лист Замовника, натисніть «Відповісти»,
+вставте текст і надішліть його зі своєї офіційної електронної адреси.
+</small>
+</div>
+
+<script>
+const contractor=document.getElementById('contractor');
+const reason=document.getElementById('reason');
+const comment=document.getElementById('comment');
+const result=document.getElementById('result');
+const copy=document.getElementById('copy');
+const status=document.getElementById('status');
+
+document.getElementById('make').onclick=()=>{
+  const name=contractor.value.trim();
+  if(!name){alert('Вкажіть назву підприємства.'); contractor.focus(); return;}
+  if(!reason.value){alert('Оберіть причину відмови.'); reason.focus(); return;}
+
+  let text=`Добрий день.
+
+${name} повідомляє про відмову від участі у запиті комерційної пропозиції № TEST-001 щодо виконання робіт на об'єкті [назва об'єкта].
+
+Причина відмови: ${reason.value}`;
+
+  if(comment.value.trim()){
+    text += `
+
+Додаткова інформація: ${comment.value.trim()}`;
+  }
+
+  text += `
+
+З повагою,
+${name}`;
+
+  result.textContent=text;
+  result.style.display='block';
+  copy.style.display='inline-block';
+  status.textContent='';
+};
+
+copy.onclick=async()=>{
+  try{
+    await navigator.clipboard.writeText(result.textContent);
+    status.textContent='Текст скопійовано. Тепер натисніть «Відповісти» у листі та вставте його.';
+  }catch(e){
+    status.textContent='Скопіюйте текст вручну з поля вище.';
+  }
+};
+</script>
+</body>
+</html>
