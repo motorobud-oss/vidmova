@@ -7,104 +7,83 @@
 <title>Відмова від участі</title>
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f3f4f6;
-        margin: 0;
-        padding: 30px;
-    }
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    margin: 0;
+    padding: 30px;
+}
 
-    .card {
-        max-width: 680px;
-        margin: 0 auto;
-        background: #ffffff;
-        border: 1px solid #d9d9d9;
-        border-radius: 10px;
-        padding: 30px;
-        box-sizing: border-box;
-    }
+.card {
+    max-width: 650px;
+    margin: 0 auto;
+    background: white;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 30px;
+}
 
-    h1 {
-        margin-top: 0;
-        font-size: 24px;
-        color: #222;
-    }
+h1 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #222;
+}
 
-    .info {
-        background: #f6f6f6;
-        padding: 16px;
-        border-radius: 7px;
-        margin: 20px 0;
-        line-height: 1.7;
-    }
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
 
-    label {
-        display: block;
-        font-weight: bold;
-        margin-top: 20px;
-        margin-bottom: 8px;
-    }
+select,
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #bcbcbc;
+    border-radius: 6px;
+    font-size: 15px;
+}
 
-    select,
-    textarea {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 12px;
-        border: 1px solid #bcbcbc;
-        border-radius: 6px;
-        font-size: 15px;
-    }
+textarea {
+    min-height: 90px;
+}
 
-    textarea {
-        min-height: 90px;
-        resize: vertical;
-    }
+button {
+    margin-top: 22px;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #b42318;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-    button {
-        margin-top: 22px;
-        padding: 13px 20px;
-        border: none;
-        border-radius: 6px;
-        background: #b42318;
-        color: white;
-        font-size: 15px;
-        font-weight: bold;
-        cursor: pointer;
-    }
+.copy-button {
+    display: none;
+    background: #444;
+}
 
-    button:hover {
-        opacity: 0.92;
-    }
+.result {
+    display: none;
+    margin-top: 25px;
+    padding: 18px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    white-space: pre-wrap;
+    line-height: 1.6;
+}
 
-    .copy-button {
-        background: #444444;
-        display: none;
-    }
-
-    .result {
-        display: none;
-        margin-top: 25px;
-        padding: 18px;
-        background: #f8f8f8;
-        border: 1px solid #dddddd;
-        border-radius: 7px;
-        white-space: pre-wrap;
-        line-height: 1.6;
-    }
-
-    .success {
-        display: none;
-        margin-top: 15px;
-        color: #1b6e32;
-        font-weight: bold;
-    }
-
-    .note {
-        margin-top: 25px;
-        color: #666666;
-        font-size: 13px;
-        line-height: 1.5;
-    }
+.success {
+    display: none;
+    margin-top: 12px;
+    color: #1b6e32;
+    font-weight: bold;
+}
 </style>
 </head>
 
@@ -112,26 +91,39 @@
 
 <div class="card">
 
-    <h1>Відмова від участі у запиті комерційної пропозиції</h1>
-
-    <div class="info">
-        <div><b>№ запиту:</b> TEST-001</div>
-        <div><b>Об'єкт:</b> [назва об'єкта]</div>
-    </div>
+    <h1>Відмова від участі</h1>
 
     <p>
-        Якщо Ваше підприємство не зацікавлене в участі,
-        оберіть причину відмови.
+        Якщо Ваше підприємство не зацікавлене в участі
+        у запиті комерційної пропозиції, оберіть причину відмови.
     </p>
 
-    <label for="reason">Причина відмови</label>
+    <label for="reason">
+        Причина відмови
+    </label>
 
     <select id="reason">
-        <option value="">Оберіть причину</option>
-        <option>Не зацікавлені у виконанні робіт.</option>
-        <option>Не влаштовує строк виконання робіт.</option>
-        <option>Не влаштовують умови оплати.</option>
-        <option>Відсутні необхідні ресурси для виконання робіт.</option>
+
+        <option value="">
+            Оберіть причину
+        </option>
+
+        <option>
+            Не зацікавлені у виконанні робіт.
+        </option>
+
+        <option>
+            Не влаштовує строк виконання робіт.
+        </option>
+
+        <option>
+            Не влаштовують умови оплати.
+        </option>
+
+        <option>
+            Відсутні необхідні ресурси для виконання робіт.
+        </option>
+
     </select>
 
     <label for="comment">
@@ -161,11 +153,6 @@
         Текст скопійовано.
     </div>
 
-    <div class="note">
-        Після копіювання тексту натисніть «Відповісти» у листі Замовника,
-        вставте текст та надішліть відповідь зі своєї офіційної електронної адреси.
-    </div>
-
 </div>
 
 <script>
@@ -186,11 +173,12 @@ function generateAnswer() {
     let answer =
 `Добрий день!
 
-Повідомляємо про відмову від участі у запиті комерційної пропозиції № TEST-001 щодо виконання робіт на об'єкті [назва об'єкта].
+Повідомляємо про відмову від участі у запиті комерційної пропозиції.
 
 Причина відмови: ${reason}`;
 
     if (comment) {
+
         answer +=
 `
 
@@ -231,9 +219,10 @@ async function copyAnswer() {
     } catch (error) {
 
         alert(
-            "Автоматичне копіювання не спрацювало. Виділіть текст вручну та скопіюйте його."
+            "Не вдалося автоматично скопіювати текст. Скопіюйте його вручну."
         );
     }
+
 }
 
 </script>
